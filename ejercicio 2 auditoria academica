@@ -1,0 +1,97 @@
+Algoritmo AuditoriaAcademica
+
+   Definir opcion Como Entero
+   Definir nota1, nota2, nota3, notadefi Como Real
+   Definir totalestu, cantaprobados, cantrecu, cantrepro Como Entero
+   Definir sumanotas, promediogrupo Como Real
+
+   totalestu <- 0
+   cantaprobados <- 0
+   cantrecu <- 0
+   cantrepro <- 0
+   sumanotas <- 0
+
+
+   Repetir
+          
+      Escribir "============================================="
+      Escribir "     SISTEMA DE AUDITORIA ACADEMICA          "
+      Escribir "============================================="
+      Escribir "1. Registrar estudiante y calcular nota"
+      Escribir "2. Consultar estadisticas del grupo"
+      Escribir "3. Salir de la aplicacion"
+      Escribir "Seleccione una opcion (1-3):"
+      Leer opcion
+
+      Segun opcion Hacer
+       1:
+         Escribir "--- REGISTRO DE NOTAS DE ESTUDIANTE ---"
+      
+         Escribir "Ingrese la nota del Parcial 1 (30%):"
+         Leer nota1
+         Mientras nota1 < 0.0 O nota1 > 5.0 Hacer
+             Escribir "Error: La nota debe estar entre 0.0 y 5.0. Intente de nuevo:"
+             Leer nota1
+         FinMientras
+
+
+         Escribir "Ingrese la nota del Parcial 2 (30%):"
+         Leer nota2
+         Mientras nota2 < 0.0 O nota2 > 5.0 Hacer
+             Escribir "Error: La nota debe estar entre 0.0 y 5.0. Intente de nuevo:" 
+             Leer nota2
+         FinMientras
+
+         Escribir "Ingrese la nota del Parcial 3 (40%):"
+         Leer nota3
+         Mientras nota3 < 0.0 O nota3 > 5.0 Hacer
+              Escribir "Error: La nota debe estar entre 0.0 y 5.0. Intente de nuevo:"
+              Leer nota3
+         FinMientras
+
+         notadefi <- (nota1 * 0.30) + (nota2 * 0.30) + (nota3 * 0.40)
+
+         Escribir "--- RESULTADO DE EVALUACION ---"
+         Escribir "Nota Definitiva: ", notadefi
+
+         Si notadefi >= 3.0 Entonces
+             Escribir "Estado Academico: APROBADO"
+             cantaprobados <- cantaprobados + 1
+         Sino
+                Si notadefi >= 2.0 Entonces
+                    Escribir "Estado Academico: EN RECUPERACION"
+                    cantrecu <- cantrecu + 1
+                Sino
+                    Escribir "Estado Academico: REPROBADO"
+                    cantrepro <- cantrepro + 1
+                FinSi
+         FinSi
+
+         totalestu <- totalestu + 1
+         sumanotas <- sumanotas + notadefi
+
+       2:
+         Escribir "============================================="
+         Escribir "      REPORTES Y ESTADISTICAS DEL GRUPO     "
+         Escribir "============================================="
+
+         Si totalestu > 0 Entonces
+             promediogrupo <- sumanotas / totalestu
+             Escribir "Total de estudiantes procesados: ", totalestu
+             Escribir "Estudiantes Aprobados: ", cantaprobados
+             Escribir "Estudiantes En Recuperacion: ", cantrecu
+             Escribir "Estudiantes Reprobados: ", cantrepro
+             Escribir "Nota Promedio General del Grupo: ", promediogrupo
+         Sino
+             Escribir "No hay datos registrados. Registre estudiantes primero."
+         FinSi
+
+       3: 
+         Escribir "Cerrando aplicacion... ¡Proceso de auditoria finalizado!"
+         De Otro Modo:
+         Escribir "Opcion no valida. Por favor intente de nuevo."
+      FinSegun
+
+    Hasta Que opcion = 3
+
+FinAlgoritmo
